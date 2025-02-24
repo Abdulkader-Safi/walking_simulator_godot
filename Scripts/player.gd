@@ -46,8 +46,17 @@ func _physics_process(delta: float) -> void:
 		run_dot = clamp(run_dot, 0.0, 1.0)
 		move_dir *= run_dot
 
-	velocity.x = move_dir.x * target_speed
-	velocity.z = move_dir.z * target_speed
+	var current_smoothing = acceleration
+
+	if not is_on_floor():
+		current_smoothing = air_acceleration
+	elif not move_dir:
+		current_smoothing = braking
+
+	var target_velocity = move_dir * target_speed
+
+	velocity.x = lerp(velocity.x, target_velocity.x, current_smoothing * delta)
+	velocity.z = lerp(velocity.z, target_velocity.z, current_smoothing * delta)
 
 	move_and_slide()
 
