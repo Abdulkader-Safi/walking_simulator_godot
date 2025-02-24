@@ -22,8 +22,11 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(_delta: float) -> void:
+	# Movement
 	var move_input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	velocity = Vector3(move_input.x, 0, move_input.y).normalized() * max_speed
+	# velocity = Vector3(move_input.x, 0, move_input.y).normalized() * max_speed
+	var move_dir = (transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
+	velocity = move_dir * max_speed
 
 	move_and_slide()
 
