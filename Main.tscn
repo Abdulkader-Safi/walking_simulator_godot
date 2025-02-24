@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://qmx2ie4g21qt"]
+[gd_scene load_steps=13 format=3 uid="uid://qmx2ie4g21qt"]
 
 [ext_resource type="Texture2D" uid="uid://cqubdkwj11v1i" path="res://Models/Grass.jpg" id="1_vnn1m"]
 [ext_resource type="ArrayMesh" uid="uid://cndcxj6gf0smr" path="res://Models/Terrain.obj" id="2_848c0"]
 [ext_resource type="PackedScene" uid="uid://cfr7h8g71lsm2" path="res://Models/Tree_0/Tree.tscn" id="3_gkk6m"]
 [ext_resource type="PackedScene" uid="uid://dwxdl6tkvd55k" path="res://Models/Rock_0/Rock.tscn" id="4_8bk2o"]
+[ext_resource type="PackedScene" uid="uid://dut3gyo4e7qbo" path="res://Models/Pedestal/Pedestal.tscn" id="5_6tcug"]
 [ext_resource type="PackedScene" uid="uid://okd0eq0xu0ox" path="res://player.tscn" id="5_7ijxy"]
+[ext_resource type="Script" path="res://Scripts/pedestal_interaction.gd" id="6_jxwih"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt33x"]
 albedo_texture = ExtResource("1_vnn1m")
@@ -194,6 +196,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.44405, 0.00390577, 12.1284
 
 [node name="Rock5" parent="Terrain/Rocks" instance=ExtResource("4_8bk2o")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.44405, 0.00390577, 12.1284)
+
+[node name="Pedestal" parent="Terrain" instance=ExtResource("5_6tcug")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90168, 0.000497341, 5.11023)
+script = ExtResource("6_jxwih")
+interact_prompt = "Turn On"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.878375, 0.477971, 0, -0.477971, 0.878375, 0, 3.28508, 0)
