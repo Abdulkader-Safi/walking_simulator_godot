@@ -19,6 +19,7 @@ var camera_look_input: Vector2
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_modifier
 
 func _ready() -> void:
+	# get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
@@ -66,6 +67,15 @@ func _physics_process(delta: float) -> void:
 	camera.rotate_x(- camera_look_input.y * look_sensitivity)
 	camera.rotation.x = clamp(camera.rotation.x, -1.5, 1.5)
 	camera_look_input = Vector2.ZERO
+
+	# Mouse
+	if Input.is_action_just_pressed('ui_cancel'):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			# get_tree().paused = false
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			# get_tree().paused = true
 
 func _unhandled_input(event) -> void:
 	if event is InputEventMouseMotion:
