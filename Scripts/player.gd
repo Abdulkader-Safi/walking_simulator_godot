@@ -19,10 +19,21 @@ var camera_look_input: Vector2
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_modifier
 
 func _ready() -> void:
-	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _physics_process(delta: float) -> void:
-	pass
+func _physics_process(_delta: float) -> void:
+	var move_input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	velocity = Vector3(move_input.x, 0, move_input.y).normalized() * max_speed
 
-func _unhandled_input(event):
-	pass
+	move_and_slide()
+
+	# Camera Look
+	rotate_y(- camera_look_input.x * look_sensitivity)
+
+	camera.rotate_x(- camera_look_input.y * look_sensitivity)
+	camera.rotation.x = clamp(camera.rotation.x, -1.5, 1.5)
+	camera_look_input = Vector2.ZERO
+
+func _unhandled_input(event) -> void:
+	if event is InputEventMouseMotion:
+		camera_look_input = event.relative
