@@ -35,8 +35,19 @@ func _physics_process(delta: float) -> void:
 	var move_input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	# velocity = Vector3(move_input.x, 0, move_input.y).normalized() * max_speed
 	var move_dir = (transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
-	velocity.x = move_dir.x * max_speed
-	velocity.z = move_dir.z * max_speed
+
+	is_running = Input.is_action_pressed('sprint')
+
+	var target_speed = max_speed
+
+	if is_running:
+		target_speed = max_run_speed
+		var run_dot = - move_dir.dot(transform.basis.z)
+		run_dot = clamp(run_dot, 0.0, 1.0)
+		move_dir *= run_dot
+
+	velocity.x = move_dir.x * target_speed
+	velocity.z = move_dir.z * target_speed
 
 	move_and_slide()
 
