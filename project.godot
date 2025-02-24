@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Walking Simulator"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
 
 [input]
 

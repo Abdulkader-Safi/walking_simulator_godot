@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://qmx2ie4g21qt"]
+[gd_scene load_steps=11 format=3 uid="uid://qmx2ie4g21qt"]
 
 [ext_resource type="Texture2D" uid="uid://cqubdkwj11v1i" path="res://Models/Grass.jpg" id="1_vnn1m"]
 [ext_resource type="ArrayMesh" uid="uid://cndcxj6gf0smr" path="res://Models/Terrain.obj" id="2_848c0"]
 [ext_resource type="PackedScene" uid="uid://cfr7h8g71lsm2" path="res://Models/Tree_0/Tree.tscn" id="3_gkk6m"]
 [ext_resource type="PackedScene" uid="uid://dwxdl6tkvd55k" path="res://Models/Rock_0/Rock.tscn" id="4_8bk2o"]
+[ext_resource type="PackedScene" uid="uid://okd0eq0xu0ox" path="res://player.tscn" id="5_7ijxy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt33x"]
 albedo_texture = ExtResource("1_vnn1m")
@@ -200,3 +201,5 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_507bv")
+
+[node name="Player" parent="." instance=ExtResource("5_7ijxy")]
