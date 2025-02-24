@@ -21,12 +21,22 @@ var camera_look_input: Vector2
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	# Apply Gravity
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	# Jump
+	if Input.is_action_pressed('jump') and is_on_floor():
+		velocity.y = jump_force
+
+
 	# Movement
 	var move_input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	# velocity = Vector3(move_input.x, 0, move_input.y).normalized() * max_speed
 	var move_dir = (transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
-	velocity = move_dir * max_speed
+	velocity.x = move_dir.x * max_speed
+	velocity.z = move_dir.z * max_speed
 
 	move_and_slide()
 
