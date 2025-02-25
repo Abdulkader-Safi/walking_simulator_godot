@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed('jump') and is_on_floor():
 		velocity.y = jump_force
 
-
 	# Movement
 	var move_input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	# velocity = Vector3(move_input.x, 0, move_input.y).normalized() * max_speed
