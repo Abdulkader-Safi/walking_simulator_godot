@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 var is_running: bool = false
 var is_stopped: bool = false
-var look_at_player: bool = false
+var look_at_player: bool = true
 
 var move_direction: Vector3
 var target_y_rot: float
@@ -52,4 +52,14 @@ func _physics_process(_delta):
 	rotation.y = lerp_angle(rotation.y, target_y_rot, 0.1)
 
 func move_to_position(to_position: Vector3, adjust_pos: bool = true):
-	pass
+	if not agent:
+		agent = $NavigationAgent3D
+
+	is_stopped = false
+
+	if adjust_pos:
+		var map = get_world_3d().navigation_map
+		var adjusted_pos = NavigationServer3D.map_get_closest_point(map, to_position)
+		agent.target_position = adjusted_pos
+	else:
+		agent.target_position = to_position
