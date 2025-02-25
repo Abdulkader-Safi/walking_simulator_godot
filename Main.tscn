@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://qmx2ie4g21qt"]
+[gd_scene load_steps=15 format=3 uid="uid://qmx2ie4g21qt"]
 
 [ext_resource type="Texture2D" uid="uid://cqubdkwj11v1i" path="res://Models/Grass.jpg" id="1_vnn1m"]
 [ext_resource type="ArrayMesh" uid="uid://cndcxj6gf0smr" path="res://Models/Terrain.obj" id="2_848c0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dut3gyo4e7qbo" path="res://Models/Pedestal/Pedestal.tscn" id="5_6tcug"]
 [ext_resource type="PackedScene" uid="uid://okd0eq0xu0ox" path="res://player.tscn" id="5_7ijxy"]
 [ext_resource type="Script" path="res://Scripts/pedestal_interaction.gd" id="6_jxwih"]
+[ext_resource type="PackedScene" uid="uid://hj11tyu4olkj" path="res://alien.tscn" id="8_sdenb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cbvi"]
 
@@ -39,8 +40,10 @@ shadow_enabled = true
 environment = SubResource("Environment_507bv")
 
 [node name="Player" parent="." instance=ExtResource("5_7ijxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18672, 9.53674e-07, 1.86839)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00996423, -0.0235282, -0.0922978)
 navigation_mesh = SubResource("NavigationMesh_vok2e")
 
 [node name="Terrain" type="StaticBody3D" parent="NavigationRegion3D"]
@@ -218,3 +221,6 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.44405, 0.00390577, 12.1284
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90168, 0.000497341, 5.11023)
 script = ExtResource("6_jxwih")
 interact_prompt = "Turn On"
+
+[node name="AI" parent="." instance=ExtResource("8_sdenb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.534856, 0)

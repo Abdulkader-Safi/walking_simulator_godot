@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://hj11tyu4olkj"]
+
+[ext_resource type="Script" path="res://Scripts/ai_controller.gd" id="1_0gc2q"]
+[ext_resource type="PackedScene" uid="uid://c2tcjs26j25ww" path="res://Models/Alien/alien-bug.glb" id="1_b74g3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g74ox"]
+height = 1.0
+
+[node name="AI" type="CharacterBody3D"]
+script = ExtResource("1_0gc2q")
+
+[node name="alien-bug" parent="." instance=ExtResource("1_b74g3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.508008, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_g74ox")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
